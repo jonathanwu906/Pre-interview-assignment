@@ -1,0 +1,8 @@
+bin/
+obj/
+.DS_Store
+*.o
+*.dSYM/
+Q2/c/tests
+Q2/c/bench
+Q2/c/tests-asan

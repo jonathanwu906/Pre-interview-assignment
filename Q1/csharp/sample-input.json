@@ -1,0 +1,21 @@
+{
+  "user": "U5nn",
+  "groups": {
+    "G7E":     { "members": [],         "subGroups": ["G54A"] },
+    "G54A":    { "members": [],         "subGroups": ["G33"] },
+    "G33":     { "members": ["U5nn"],   "subGroups": [] },
+    "G8ig5":   { "members": [],         "subGroups": ["G6f4D9"] },
+    "G6f4D9":  { "members": [],         "subGroups": ["G7E33a"] },
+    "G7E33a":  { "members": [],         "subGroups": ["G17yT"] },
+    "G17yT":   { "members": ["U5nn"],   "subGroups": [] },
+    "G7E33aR": { "members": ["U5n"],    "subGroups": [] },
+    "G333":    { "members": ["U33", "U7a01"], "subGroups": [] }
+  },
+  "files": [
+    { "name": "sample-file.txt",   "acl": ["U5n", "G7E33aR", "U33", "G333", "U7a01"] },
+    { "name": "team-roadmap.md",   "acl": ["G7E33a"] },
+    { "name": "personal-note.txt", "acl": ["U5nn"] },
+    { "name": "ops-runbook.md",    "acl": ["G8ig5", "U7a01"] },
+    { "name": "hr-policy.pdf",     "acl": ["G333"] }
+  ]
+}
