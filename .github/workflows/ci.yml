@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test + benchmark
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Environment
+        run: |
+          uname -a
+          nproc
+          getconf PAGESIZE
+          cc --version | head -1
+
+      - name: Q1 — 13 tests + benchmark (naive vs design, differential)
+        run: |
+          dotnet run --project Q1/csharp
+          dotnet run --project Q1/csharp -c Release -- benchmark 500 200 100000 2
+
+      - name: Q2 — 13 tests, ASan + UBSan, benchmark
+        run: |
+          make -C Q2/c test
+          make -C Q2/c test-asan
+          make -C Q2/c run-bench
+
+      - name: Q3 — 12 selftests + analysis
+        run: |
+          dotnet run --project Q3/csharp -- selftest
+          dotnet run --project Q3/csharp
